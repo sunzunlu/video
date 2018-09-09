@@ -1,0 +1,169 @@
+<!-- 
+        作者： 孙尊路
+        创建时间：2018-06-09 13:26:47
+        版本： [1.0, 2018/06/09]
+        版权： 江苏国泰新点软件有限公司
+        描述： H5 video视频组件（只列举了常用的功能）
+-->
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>video视频播放</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/mui.css" />
+		<link rel="stylesheet" href="css/showcase_video.css" />
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<p>视频状态：<span class="status colorstyl"></span></p>
+			<p>正在播放：<span class="timeupdate colorstyl"></span></p>
+			<hr />
+			<video poster="res/poster.png" id='video' src="res/trailer.mp4" controls playsinline webkit-playsinline preload='none'>
+				<source id='mp4' src="res/trailer.mp4" type='video/mp4'>
+				<!--<source id='webm' src="https://media.w3.org/2010/05/sintel/trailer.webm" type='video/webm'>
+				<source id='ogv' src="https://media.w3.org/2010/05/sintel/trailer.ogv" type='video/ogg'>-->
+			</video>
+			<div class="buttonlist">
+				<button id="load">初始化(load)</button>
+				<button id="play">播放(play)</button>
+				<button id="pause">暂停(pause)</button>
+				<button id="currentTime">从上次观看25s后开始播放(currentTime)</button>
+				<button id="playbackRate+" class="mui-hidden">快进(playbackRate+)</button>
+				<button id="playbackRate-" class="mui-hidden">快退(playbackRate-)</button>
+				<button id="volume-">音量递减(volume-)</button>
+				<button id="volume+">音量递增(volume+)</button>
+				<button id="muted+">开启静音(muted+)</button>
+				<button id="fullscreen+">开启全屏(fullscreen在每个webview容器下不同)</button>
+			</div>
+			<hr />
+
+			<h4>可实现的需求：</h4>
+
+			<h5>1.播放过程中可以触发常用的特定事件(比如：播放、暂停、视频播放结束等基本业务常用事件)[可参考示例]</h5>
+			<h5>2.可以根据之前播放的进度(时间)，继续播放,点击按钮“从上次25s后开始播放(currentTime)”查看效果</h5>
+
+			<h4>常见问题：</h4>
+			<h5>1.开启全屏(fullscreen在每个容器下不同，微信、QQ容器对全屏做了处理，我们自己的容器还需测试。)</h5>
+		</div>
+		<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// video DOM视频对象
+			var video = document.getElementById("video");
+
+			// 记录视频状态
+			var statusNode = document.querySelector('.status');
+
+			// 操作按钮（方法和属性）
+			mui(".buttonlist").on('tap', 'button', function() {
+				var _this = this;
+				var id = _this.getAttribute("id");
+				switch(id) {
+					//  初始化视频
+					case "load":
+						video.load()
+						break;
+					case "play":
+						video.play()
+						break;
+					case "pause":
+						video.pause()
+						break;
+					case "currentTime":
+						video.play();
+						setTimeout(function() {
+							video.currentTime = 25;
+						}, 300);
+						break;
+					case "playbackRate+":
+						video.playbackRate += 0.1;
+						break;
+					case "playbackRate-":
+						video.playbackRate -= 0.1;
+						break;
+					case "volume-":
+						video.volume -= 0.1;
+						break;
+					case "volume+":
+						video.volume += 0.1
+						break;
+					case "muted+":
+						if("开启静音(muted+)" == _this.innerText.trim()) {
+							video.muted = true;
+							_this.innerText = "取消静音(muted-)";
+						} else {
+							video.muted = false;
+							_this.innerText = "开启静音(muted+)";
+						}
+						break;
+					case "fullscreen+":
+						video.webkitRequestFullScreen(); //进入全屏
+						break;
+
+					default:
+						break;
+				}
+			});
+
+			//  播放事件
+			video.addEventListener("play", function() {
+				var message = "视频开始播放了";
+				statusNode.innerText = message;
+				alert(message);
+			}, false);
+
+			// 暂停事件
+			video.addEventListener("pause", function() {
+				var message = "视频暂停了";
+				statusNode.innerText = message;
+				alert(message);
+			}, false);
+
+			// 结束事件
+			video.addEventListener("ended", function() {
+				var message = "视频观看结束了";
+				statusNode.innerText = message + "   一共花了" + formatSeconds(video.currentTime);
+				alert(message);
+			}, false);
+
+			//  实时时间监听事件
+			video.addEventListener("timeupdate", function(w) {
+				var currentTime = video.currentTime;
+				console.log("正在播放..." + currentTime);
+				document.querySelector('.timeupdate').innerText = formatSeconds(currentTime);
+			}, false);
+
+			// 秒转换时分秒方法
+			function formatSeconds(value) {
+				var secondTime = parseInt(value); // 秒
+				var minuteTime = 0; // 分
+				var hourTime = 0; // 小时
+				if(secondTime > 60) { //如果秒数大于60，将秒数转换成整数
+					//获取分钟，除以60取整数，得到整数分钟
+					minuteTime = parseInt(secondTime / 60);
+					//获取秒数，秒数取佘，得到整数秒数
+					secondTime = parseInt(secondTime % 60);
+					//如果分钟大于60，将分钟转换成小时
+					if(minuteTime > 60) {
+						//获取小时，获取分钟除以60，得到整数小时
+						hourTime = parseInt(minuteTime / 60);
+						//获取小时后取佘的分，获取分钟除以60取佘的分
+						minuteTime = parseInt(minuteTime % 60);
+					}
+				}
+				var result = "" + parseInt(secondTime) + "秒";
+
+				if(minuteTime > 0) {
+					result = "" + parseInt(minuteTime) + "分" + result;
+				}
+				if(hourTime > 0) {
+					result = "" + parseInt(hourTime) + "小时" + result;
+				}
+				return result;
+			}
+		</script>
+	</body>
+
+</html>

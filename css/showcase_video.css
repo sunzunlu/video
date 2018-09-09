@@ -1,0 +1,28 @@
+/** 
+ * 作者： 孙尊路
+ * 创建时间：2018/06/09 14:47:28
+ * 版本： [1.0, 2018/06/09]
+ * 版权： 江苏国泰新点软件有限公司
+ * 描述：H5 video视频组件
+**/
+
+#video {
+	max-width: 100%;
+}
+
+button {
+	margin-top: 5px;
+}
+
+h4,
+.colorstyl {
+	color: red;
+	font-weight: 800;
+	margin: 5px;
+}
+
+h5{
+	margin: 5px;
+	color: #3c80e6;
+	font-size: 16px;
+}
