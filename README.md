@@ -11,6 +11,10 @@
 
 - [video视频播放在线预览](http://ydyfcs.epoint.com.cn:8066/H5/showcase_video/showcase_video.html) ` 注：按F12可在浏览器预览`
 
+![](https://cdn-pri.nlark.com/yuque/0/2018/jpeg/123147/1536498112754-26ff3664-609d-43ac-9331-2fe46db08570.jpeg)  
+![](https://cdn-pri.nlark.com/yuque/0/2018/png/123147/1536498101452-0079c689-b827-432c-8c09-c1fcc32f64b9.png)  
+
+
 
 # 常见问题：
 
