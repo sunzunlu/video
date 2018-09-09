@@ -8,7 +8,7 @@
 2.可以根据之前播放的进度(时间、历史观看记录)，继续播放。
 
 
-![手机端扫一扫查看效果：](http://ydyfcs.epoint.com.cn:8066/H5/showcase_video/showcase_video.html)  
+![手机端效果](http://ydyfcs.epoint.com.cn:8066/H5/showcase_video/showcase_video.html)  
 
 常见问题：
 
