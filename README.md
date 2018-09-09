@@ -10,9 +10,9 @@
 ### 效果
 
 - [video视频播放在线预览](http://ydyfcs.epoint.com.cn:8066/H5/showcase_video/showcase_video.html) ` 注：按F12可在浏览器预览`  
-
-![](http://ydyfcs.epoint.com.cn:8066/doc/ydyf3z/assets/008/20180609221954456.jpg)  
 ![](http://ydyfcs.epoint.com.cn:8066/doc/ydyf3z/assets/008/20180609205551321.png)  
+![](http://ydyfcs.epoint.com.cn:8066/doc/ydyf3z/assets/008/20180609221954456.jpg)  
+
 
 
 
