@@ -7,9 +7,8 @@
 1.播放过程中能够触发常用的特定事件(比如：播放、暂停、视频播放结束等基本业务常用事件)
 2.可以根据之前播放的进度(时间、历史观看记录)，继续播放。
 
-手机端扫一扫查看效果：
 
-http://ydyfcs.epoint.com.cn:8066/H5/showcase_video/showcase_video.html  [可PC端查看，最好是Chrome浏览器]
+![手机端扫一扫查看效果：](http://ydyfcs.epoint.com.cn:8066/H5/showcase_video/showcase_video.html)  
 
 常见问题：
 
